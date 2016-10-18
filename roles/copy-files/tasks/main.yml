@@ -1,0 +1,15 @@
+---
+- name: copy bashrc file;
+  copy: src=/home/rtalur/.bashrc dest=/home/rtalur/.bashrc owner=rtalur group=rtalur mode=644 backup=yes
+
+- name: copy gdbinit file;
+  copy: src=/home/rtalur/.gdbinit dest=/home/rtalur/.gdbinit owner=rtalur group=rtalur mode=644 backup=yes
+
+- name: create samba dir if not existing;
+  file: path=/etc/samba state=directory recurse=yes
+
+- name: copy smb.conf;
+  copy: src=smb.conf dest=/etc/samba/smb.conf owner=root group=root mode=644 backup=yes
+
+- name: copy smb init file;
+  copy: src=/syncdir/Code/su/packaging/RHEL-CTDB/setup/smb.init dest=/etc/init.d/smb owner=root group=root mode=755 backup=yes remote_src=True
